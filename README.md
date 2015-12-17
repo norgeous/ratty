@@ -5,9 +5,11 @@ Remote Access TTY (in browser)
 
 Get a realtime piped shell in browser, using node, socket.io and tmux.
 
-Secured with tls (self-signed) and HTTP Basic Auth.
+Secured with HTTPS/SSL/TLS (self-signed) and HTTP Basic Auth.
 
 Supports multiple users in the same shell.
+
+Supports normal shell tab completetion and colors.
 
 Alternative to ssh?
 
