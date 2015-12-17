@@ -2,7 +2,7 @@ var port = 3000;
 
 var app = require('express')();
 //var https_configuration
-var https = require('./self-signed-server').Configure(app, '192.158.0.5', 1000*60*10);
+var https = require('./modules/self-signed-server').Configure(app, '192.158.0.5', 1000*60*10);
 //var https = https_configuration.Server(https_configuration.options, app);
 
 
@@ -136,7 +136,7 @@ var connect = function(socket){
 //var connected = function(socket){};
 
 
-var tmux = require('./tmux');
+var tmux = require('./modules/tmux');
 var url = require('url');
 io.on('connection', function(socket){
 
