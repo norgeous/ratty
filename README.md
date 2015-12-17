@@ -10,7 +10,7 @@ Supports multiple users in the same shell.
 Alternative to ssh?
 
 
-## Install
+## Node Install
 
 you need nodejs 5 or higher: https://nodejs.org/en/download/package-manager/#debian-and-ubuntu-based-linux-distributions
 
@@ -20,6 +20,7 @@ create ```nodejs``` alias as ```node```
 sudo ln -s /usr/bin/nodejs /usr/bin/node
 ```
 
+## Ratty Install
 ```
 cd /usr/local/
 git clone https://github.com/norgeous/ratty.git
@@ -27,7 +28,7 @@ cd ratty
 npm install
 ```
 
-## Start server
+## Start Ratty
 
 ```
 clear && node /usr/local/ratty/index.js
