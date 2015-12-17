@@ -3,7 +3,9 @@ Remote Access TTY (in browser)
 
 ### in development
 
-Get a realtime piped shell in browser, using node, socket.io, tmux and tls (self-signed).
+Get a realtime piped shell in browser, using node, socket.io and tmux.
+
+Secured with tls (self-signed) and HTTP Basic Auth.
 
 Supports multiple users in the same shell.
 
