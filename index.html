@@ -16,7 +16,7 @@
 			button.current{}
 			button.current::before{content:"> ";} 
 			
-			#terminal{margin:0;padding:10px; font:14px monospace; background:black; color:#0f0; height:100%; box-sizing:border-box; overflow-y:auto; outline:0;}
+			#terminal{margin:0;padding:10px; font:14px monospace; background:black; color:#0f0; height:100%; box-sizing:border-box; overflow-y:auto; outline:0; white-space:pre;}
 			#status{padding:5px; box-sizing:border-box; text-align:center; color:white;}
 
 			#cursor{background:#0F0; color:black;}
@@ -34,8 +34,8 @@
 				<div id="sessionlist">
 					<button class="icon" id="mainlog" title="Show logs">&equiv;</button>
 					<button class="icon" id="restart" title="Restart">&#8634;</button>
-					<button class="icon" id="newsession" title="Create new session">&#10010;</button>
 					<div id="list"></div>
+					<button class="icon" id="newsession" title="Create new session">&#10010;</button>
 				</div>
 				<div id="controls">
 					<button class="icon" id="settings" title="Settings">&#9881;</button>
@@ -53,17 +53,38 @@
 
 		<script>
 
-			var beep_playing=false;
-			function beep() {
-				if(!beep_playing){
-					beep_playing=true;
-			    	var snd = new Audio("data:audio/wav;base64,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qJrx4KOQjahZxWbcZgztj2c49nKmkId44S71j0c8eV9yDK6uPRzx5X18eDvjvQ6yKo9ZSS6l//8elePK/Lf//IInrOF/FvDoADYAGBMGb7FtErm5MXMlmPAJQVgWta7Zx2go+8xJ0UiCb8LHHdftWyLJE0QIAIsI+UbXu67dZMjmgDGCGl1H+vpF4NSDckSIkk7Vd+sxEhBQMRU8j/12UIRhzSaUdQ+rQU5kGeFxm+hb1oh6pWWmv3uvmReDl0UnvtapVaIzo1jZbf/pD6ElLqSX+rUmOQNpJFa/r+sa4e/pBlAABoAAAAA3CUgShLdGIxsY7AUABPRrgCABdDuQ5GC7DqPQCgbbJUAoRSUj+NIEig0YfyWUho1VBBBA//uQZB4ABZx5zfMakeAAAAmwAAAAF5F3P0w9GtAAACfAAAAAwLhMDmAYWMgVEG1U0FIGCBgXBXAtfMH10000EEEEEECUBYln03TTTdNBDZopopYvrTTdNa325mImNg3TTPV9q3pmY0xoO6bv3r00y+IDGid/9aaaZTGMuj9mpu9Mpio1dXrr5HERTZSmqU36A3CumzN/9Robv/Xx4v9ijkSRSNLQhAWumap82WRSBUqXStV/YcS+XVLnSS+WLDroqArFkMEsAS+eWmrUzrO0oEmE40RlMZ5+ODIkAyKAGUwZ3mVKmcamcJnMW26MRPgUw6j+LkhyHGVGYjSUUKNpuJUQoOIAyDvEyG8S5yfK6dhZc0Tx1KI/gviKL6qvvFs1+bWtaz58uUNnryq6kt5RzOCkPWlVqVX2a/EEBUdU1KrXLf40GoiiFXK///qpoiDXrOgqDR38JB0bw7SoL+ZB9o1RCkQjQ2CBYZKd/+VJxZRRZlqSkKiws0WFxUyCwsKiMy7hUVFhIaCrNQsKkTIsLivwKKigsj8XYlwt/WKi2N4d//uQRCSAAjURNIHpMZBGYiaQPSYyAAABLAAAAAAAACWAAAAApUF/Mg+0aohSIRobBAsMlO//Kk4soosy1JSFRYWaLC4qZBYWFRGZdwqKiwkNBVmoWFSJkWFxX4FFRQWR+LsS4W/rFRb/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////VEFHAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAU291bmRib3kuZGUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMjAwNGh0dHA6Ly93d3cuc291bmRib3kuZGUAAAAAAAAAACU=");  
-			    	snd.addEventListener('ended', function(){
-			    		beep_playing=false;
-			    	});
-			    	snd.play();
-				}
-			}
+			var play_freq = function(freq, duration, delay=0){
+
+				// audio context
+				var context = new window.AudioContext();
+				var currTime = context.currentTime;
+				var oscillator = context.createOscillator();
+				var gainNode = context.createGain ? context.createGain() : context.createGainNode();
+				oscillator.connect(gainNode);
+				gainNode.connect(context.destination);
+
+				// start and stop
+				var start = currTime + delay;
+				var finish = start + duration;
+				var midpoint = start + (duration/2);
+				oscillator.start ? oscillator.start(start) : oscillator.noteOn(start);
+				oscillator.stop ? oscillator.stop(finish) : oscillator.noteOff(finish);
+
+				//sine:0, square:1, sawtooth:2, triangle:3 
+				oscillator.type = 1;
+				oscillator.frequency.value = freq;
+
+				//fade volume out (to zero) after midpoint - stops annoying clicking sound
+				gainNode.gain.value = 0.2;
+				gainNode.gain.linearRampToValueAtTime(0.2, midpoint);
+				gainNode.gain.linearRampToValueAtTime(0, finish);
+			};
+
+			var beep = function(){
+				play_freq(261.63, .2); //middle C
+				play_freq(392.00, .1, .1); //middle G
+				console.log("beep");
+			};
 
 			$(function() {
 				
@@ -71,7 +92,6 @@
 				$("#terminal").focusout(function(){$("#terminal").removeClass('active');});
 				$(window).focus(function(){$("#terminal").focus();});
 				$("body").click(function(){$("#terminal").focus();});
-				//$("#terminal").focus();
 
 				var socket = io();
 
@@ -81,11 +101,11 @@
 				});
 
 				$('#restart').click(function(e){
-					socket.emit('keypress','sudo systemctl restart socketio-tty');
+					socket.emit('keypress','sudo systemctl restart ratty');
 				});
 
 				$('#mainlog').click(function(e){
-					socket.emit('keypress','systemctl status socketio-tty -l');
+					socket.emit('keypress','systemctl status ratty -l');
 				});
 
 				$(document).on('click', '#sessionlist #list button', function(e){
@@ -149,15 +169,11 @@
 					$('#status').text('disconnected');
 					$("#cursor").addClass('error');
 				});
+
 				socket.on('connect', function(){
 					$("#cursor").removeClass('error');
 				});
-/*
-				socket.on('cleartranscript', function(){
-					$('#terminal').html('cleared');
-					tty = '';
-				});
-*/
+
 				var tty = '';
 				var i = 0;
 				var cursor_position = 0;
@@ -170,85 +186,117 @@
 						return [str1.slice(0, pos), str2].join('');
 					};
 
-					for(var i=0; i<transcript.length; i++){
+					//for(var i=0; i<transcript.length; i++){
+					var i=0;
+					while(i<transcript.length){
 						
 						switch(transcript.charAt(i)){
 							
 							default:
 								tty = insertAt(tty, transcript.charAt(i), cursor_position);
 								cursor_position++;
+								i++;
 							break;
 
-							//case "\r":
+							case "\r":
 							case "\n":
 								cursor_position=tty.length;
-								tty = insertAt(tty, '<br>', cursor_position);
-								cursor_position++;
-								cursor_position=cursor_position+4;
+								tty = insertAt(tty, transcript.charAt(i), cursor_position);
+								i++;
 							break;
 
 							case "":
 								cursor_position--;
+								i++;
 							break;
 
 							case "":
-								beep();
+								if(i==transcript.length-1) beep();
+								i++;
 							break;
 
 							case "":
 
-								switch(transcript.charAt(i+2)){
+								var nextchar1 = transcript.charAt(i+1);
+								if(nextchar1 === "["){
 
-									//right
-									case "C":
-										cursor_position++;
-										i=i+2;
-									break;
+									var nextchar2 = transcript.charAt(i+2);
+									switch(nextchar2){
 
-									//clear screen
-									case "H":
-									case "J":
-										cursor_position=0;
-										i=i+2;
-									break;
+										//right
+										case "C":
+											cursor_position++;
+											//i=i+2;
+											i++;	// c processed
+										break;
 
-									//clip to cursor?
-									case "K":
-										tty = insertAt(tty, '', cursor_position);
-										i=i+2;
-									break;
+										//clear screen
+										case "H":
+										case "J":
+											cursor_position=0;
+											//i=i+2;
+											i++;	// h or j processed
+										break;
 
-									//delete (do not advance cursor)
-									case "1":
-										if(transcript.charAt(i+3)==="P") {
-											i=i+3;
-										}
-									break;
+										// [K - clip to cursor?
+										case "K":
+											tty = insertAt(tty, '', cursor_position);
+											//i=i+2;
+											i++;	// k procssed
+										break;
 
-									case "0":
-										//if(transcript.charAt(i+3)==="P") {
-										//	i=i+3;
-										//}
-										var nextm = transcript.substr(i).indexOf('m');
-										var code = transcript.substr(i+2,i+2+nextm);
-										var toinsert = '<span style="color:yellow;">ESC[<span style="color:blue;">'+code+'</span></span>';
-										tty = insertAt(tty, toinsert, cursor_position);
-										cursor_position+=toinsert.length;
-										i=i+2+nextm;
+										// [1P - delete (do not advance cursor)
+										case "1":
+											var nextchar3 = transcript.charAt(i+3);
+											if(nextchar3 === "P") {
+												i++;	// P processed
+											}
+											i++;	// 1 processed
+										break;
 
-									break;
+										default:
+											var nextm = transcript.substr(i+2).indexOf('m');
+											var code = transcript.substr(i+2,nextm);
+											var toinsert = '<span style="color:red;">{'+code+'}</span>';
+											
+											switch(code){
+												case '0':
+													var toinsert = '</span>';
+												break;
+												case '1;32':
+													var toinsert = '<span style="color:red;">';
+												break;
+												case '01;34':
+													var toinsert = '<span style="color:blue;">';
+												break;
+												case '01;36':
+													var toinsert = '<span style="color:cyan;">';
+												break;
+												case '30;42':
+													var toinsert = '<span style="color:black; background:green;">';
+												break;
+												case '40;33':
+													var toinsert = '<span style="color:yellow;">';
+												break;
+												default:
+													var toinsert = '<span style="color:black; background:red;">UNKNOWN ESCAPE CODE</span>';
+												break;
 
-									//
-									default:
-										var toinsert = '<span style="color:red;">ES2['+transcript.charAt(i+2)+'</span>';
-										tty = insertAt(tty, toinsert, cursor_position);
-										cursor_position+=toinsert.length;
-										//cursor_position++;
-										i=i+2;
-									break;
+
+											}
+											tty = insertAt(tty, toinsert, cursor_position);
+											cursor_position+=toinsert.length;
+											//cursor_position++;
+											i+=code.length+1;
+										break;
+
+									}
+
+									i++;	// [ processed
 
 								}
-
+								
+								i++;	// esc processed
 							break;
 						}
 					}
