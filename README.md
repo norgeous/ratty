@@ -41,6 +41,11 @@ clear && node /usr/local/ratty/index.js
 
 ## Systemd service (for autostart and respawning on crash/exit)
 
+
+```
+sudo chown -R yourusername /usr/local/ratty
+
+```
 ```
 nano /etc/systemd/system/ratty.service
 ```

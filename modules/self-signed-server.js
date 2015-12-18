@@ -30,11 +30,11 @@ module.exports = {
 
 		var basic = auth.basic({
 			realm: "Login",
-			file: __dirname + "/users.htpasswd"
+			file: __dirname + "/../config/users.htpasswd"
 		});
 		app.use(auth.connect(basic));
 
-		var certsfile = __dirname+'/certs.json';
+		var certsfile = __dirname+'/../config/certs.json';
 		var pems = fs.readJsonSync(certsfile, {throws: false});
 		if(!pems){
 			console.log( 'No contents in '+certsfile+', generating...' );

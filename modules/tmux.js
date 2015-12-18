@@ -2,14 +2,14 @@ var exec = require('child_process').exec;
 var fs = require('fs');
 
 module.exports = {
-	pipes = {},
+	pipes: {},
 	connect: function(socket){
 
 		var pipefile = '/tmp/.tmux-session-'+socket.tmux_session_id+'.pipe';
 		var logfile = '/tmp/.tmux-session-'+socket.tmux_session_id+'.log';
 
 		//if pipe not exists (server.js does not know about the session - it may still exist in tmux)
-		if(!pipes[socket.tmux_session_id]){
+		if(!module.exports.pipes[socket.tmux_session_id]){
 			
 			//either the tmux session does not exist, or is not connected to node
 
@@ -32,10 +32,10 @@ module.exports = {
 							exec('mkfifo "'+pipefile+'"', function(error, stdout, stderr){
 
 								// connect fifo to node (will skip creation next time)
-								pipes[socket.tmux_session_id] = fs.createReadStream(pipefile);
+								module.exports.pipes[socket.tmux_session_id] = fs.createReadStream(pipefile);
 
 								// when fifo gets data
-								pipes[socket.tmux_session_id].on('data', function(data){
+								module.exports.pipes[socket.tmux_session_id].on('data', function(data){
 
 									// save to log file
 									fs.appendFileSync(logfile, data.toString());
@@ -57,7 +57,8 @@ module.exports = {
 								exec('tmux pipe-pane -t "'+socket.tmux_session_id+'" -o "cat >> '+pipefile+'"');
 
 								//
-								connected(socket);
+								//connected(socket);
+								module.exports.afterwards(socket);
 
 							});
 
@@ -71,50 +72,55 @@ module.exports = {
 
 		} else {
 
-			//tmux session exists and is piping into pipes[]
-			
-			// send log
-			socket.emit('transcript', fs.readFileSync('/tmp/.tmux-session-'+socket.tmux_session_id+'.log').toString());
+		//tmux session exists and is piping into pipes[]
+		
+		// send log
+		socket.emit('transcript', fs.readFileSync('/tmp/.tmux-session-'+socket.tmux_session_id+'.log').toString());
 
-			//
-			//connected(socket);
+		//
+		//connected(socket);
+		module.exports.afterwards(socket);
+
+		}
+
+	},
+	afterwards: function(socket){
+
+		// send sessions
+		exec('tmux ls -F "#{session_name}"', function(error, stdout, stderr){
+			socket.emit('sessionlist', stdout.split('\n').filter(function(n){ return n != "" }));
+		});
+
+		//connected
+		socket.emit('status', 'connected to "'+socket.tmux_session_id+'" as "'+socket.id+'"');
+
+		//socket listener
+		socket.on('keypress', function(msg){
+
+			//https.checkExpired();
+			exec('tmux send -t"'+socket.tmux_session_id+'" "'+msg+'"');
+
+		});
+		
+		//socket listener
+		socket.on('destroy', function(){
+			fs.unlink('/tmp/.tmux-session-'+socket.tmux_session_id+'.pipe');
+			fs.unlink('/tmp/.tmux-session-'+socket.tmux_session_id+'.log');
+			delete module.exports.pipes[socket.tmux_session_id];
+			exec('tmux kill-session -t "'+socket.tmux_session_id+'"');
+
+			socket.emit('status', 'killed '+socket.tmux_session_id);
+			socket.emit('transcript', '\n\nkilled '+socket.tmux_session_id);
+			
 			// send sessions
 			exec('tmux ls -F "#{session_name}"', function(error, stdout, stderr){
 				socket.emit('sessionlist', stdout.split('\n').filter(function(n){ return n != "" }));
 			});
-
-			//connected
-			socket.emit('status', 'connected to "'+socket.tmux_session_id+'" as "'+socket.id+'"');
-
-			//socket listener
-			socket.on('keypress', function(msg){
-
-				//https.checkExpired();
-				exec('tmux send -t"'+socket.tmux_session_id+'" "'+msg+'"');
-
-			});
-			
-			//socket listener
-			socket.on('destroy', function(){
-				fs.unlink('/tmp/.tmux-session-'+socket.tmux_session_id+'.pipe');
-				fs.unlink('/tmp/.tmux-session-'+socket.tmux_session_id+'.log');
-				delete pipes[socket.tmux_session_id];
-				exec('tmux kill-session -t "'+socket.tmux_session_id+'"');
-
-				socket.emit('status', 'killed '+socket.tmux_session_id);
-				socket.emit('transcript', '\n\nkilled '+socket.tmux_session_id);
-				
-				// send sessions
-				exec('tmux ls -F "#{session_name}"', function(error, stdout, stderr){
-					socket.emit('sessionlist', stdout.split('\n').filter(function(n){ return n != "" }));
-				});
-			});
-		}
-
+		});
 	},
 	execTmuxLs: function(cb){
 		exec('tmux ls -F "#{session_name}"', function(error, stdout, stderr){
 			cb(error, stdout, stderr);
-		};
+		});
 	}
 };
