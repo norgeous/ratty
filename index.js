@@ -2,7 +2,8 @@ var app = require('express')();
 var ess = require('./modules/express-self-signed');
 var https = ess.do({
 	domain:'192.168.0.8',
-	port_tls:'3000'
+	port_tls:'3000',
+	cert_duration:1000*60*60*24*365
 }, app);
 
 app.get('/', function(req, res){

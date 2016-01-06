@@ -19,7 +19,7 @@
 
 
 
-		<title>ratty</title>
+		<title>ratty v0.0.1</title>
 
 
 
@@ -29,9 +29,9 @@
 		<style>
 
 			html, body{margin:0; padding:0; height:100%; font: 12px Arial, sans-serif;}
-			#page{display:flex; flex-direction:column; /*padding:5px;*/ background:#333; height:100%; box-sizing:border-box;}
+			#page{display:flex; flex-direction:column; background:#333; height:100%; box-sizing:border-box;}
 			
-			#top{display:flex; flex-direction:row; /*padding:5px;*/ box-sizing:border-box;justify-content:flex-end;}
+			#top{display:flex; flex-direction:row; box-sizing:border-box;justify-content:flex-end;}
 			#sessionlist{margin-right:auto; display:flex; flex-direction:row;}
 			#controls{}
 			
@@ -43,36 +43,37 @@
 			#flexv100{height:100%; position:relative; margin:0 auto; width:960px;}
 			.scrollcontainer{width:960px; height:100%; position:absolute;}
 			#terminal{width:960px; padding:0px; font:14px monospace; background:#222; color:#0f0; box-sizing:border-box; /*overflow-y:auto;*/ outline:0; white-space:pre;}
-			
+			#terminal{background:center center no-repeat fixed url('data:image/png;base64,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');}
+
+			.char{background:rgba(0,0,0,0.5); display:inline-block;}
 			.char-style-1{font-weight:bold;}				/* Bright */
 			.char-style-2{text-decoration:overline;}		/* Dim */
 			.char-style-4{text-decoration:underline;}		/* Underscore */
 			.char-style-5{}									/* Blink */
 			.char-style-7{color:black; background:#0F0;}	/* Reverse (inverse colours?) */
 			.char-style-8{text-decoration:line-through;}	/* Hidden */
-			.char-style-30{color:Black;}
-			.char-style-31{color:Red;}
-			.char-style-32{color:Green;}
-			.char-style-33{color:Yellow;}
-			.char-style-34{color:Blue;}
-			.char-style-35{color:Magenta;}
-			.char-style-36{color:Cyan;}
-			.char-style-37{color:White;}
-			.char-style-40{background:Black;}
-			.char-style-41{background:Red;}
-			.char-style-42{background:Green;}
-			.char-style-43{background:Yellow;}
-			.char-style-44{background:Blue;}
-			.char-style-45{background:Magenta;}
-			.char-style-46{background:Cyan;}
-			.char-style-47{background:White;}
+			.char-style-30{color:black;}
+			.char-style-31{color:red;}
+			.char-style-32{color:green;}
+			.char-style-33{color:yellow;}
+			.char-style-34{color:blue;}
+			.char-style-35{color:magenta;}
+			.char-style-36{color:cyan;}
+			.char-style-37{color:white;}
+			.char-style-40{background:black;}
+			.char-style-41{background:red;}
+			.char-style-42{background:green;}
+			.char-style-43{background:yellow;}
+			.char-style-44{background:blue;}
+			.char-style-45{background:magenta;}
+			.char-style-46{background:cyan;}
+			.char-style-47{background:white;}
 
 			#status{padding:5px; box-sizing:border-box; text-align:center; color:white;}
 
 			#top,#status{position:static;}
 
 			#coords{display:block; position:absolute; color:yellow;}
-			.char{background:black; display:inline-block;}
 			.cursor{background:#0F0; color:black;}
 			.cursor.error{background:#F00;}
 
@@ -369,17 +370,20 @@
 
 				showOutput:function(){
 
+					console.log('rawlines:',this.raw.lines,'cursor:',this.raw.cursor);
 						
-					var source = []; for(var i=0; i<this.raw.lines.length; i++) source.push(this.raw.lines[i].slice());	//slice to copy array
+					var source = []; for(var i=0; i<this.raw.lines.length; i++) {
+						//console.log(i+' of '+this.raw.lines.length,this.raw.lines[i]);
+						source.push(this.raw.lines[i].slice());}	//slice to copy array
 
 					if(source[this.raw.cursor.line][this.raw.cursor.column]===undefined){source[this.raw.cursor.line][this.raw.cursor.column]={char:' '};}
 
-					//console.log(source);
 
 					//var out = '<span id="coords">('+this.raw.cursor.column+','+this.raw.cursor.line+')</span>'+"\n";
 					var out = '';
 					for(var i=0;i<source.length;i++){
 						for(var j=0;j<source[i].length;j++){
+							//console.log(i,j);
 							out += '<span class="';
 							out += 'char ';
 							out += 'char-'+source[i][j].char.charCodeAt(0)+' ';
@@ -407,6 +411,7 @@
 				//parse ansi one char at a time into array of lines, takes a multi character string of ansi
 				addAnsi:function(ansi_blob){
 
+					console.log(ansi_blob);
 
 					// for each character in blob
 					for(var ansi_char_index=0; ansi_char_index<ansi_blob.length; ansi_char_index++){
@@ -415,7 +420,7 @@
 						switch(ansi_char){
 							
 							default:
-								//console.log('inserting "'+ansi_char+'" ('+ansi_char.charCodeAt(0)+') at ('+this.raw.cursor.column+','+this.raw.cursor.line+')');
+								console.log('inserting "'+ansi_char+'" ('+ansi_char.charCodeAt(0)+') at ('+this.raw.cursor.column+','+this.raw.cursor.line+')');
 								if(this.raw.cursor.column===this.raw.dimensions.width){
 									this.raw.cursor.column=0;
 									this.raw.cursor.line++;
@@ -424,11 +429,19 @@
 								this.insertChar(ansi_char);
 								this.raw.cursor.column++;
 							break;
+							
+							case "": //Shift In, resume defaultn character set 
+								//console.log("shift in (ignored)");
+								//this.insertChar('');
+								//this.raw.cursor.column++;
+							break;
 
 							case "\n":
 								//console.log("newline n");
 								this.raw.cursor.line++;
+								this.raw.lines[this.raw.cursor.line]=[{char:''}];
 							break;
+
 							case "\r":
 								//console.log("carrage return");
 								this.raw.cursor.column=0;
@@ -446,7 +459,7 @@
 							
 							case "":
 
-								var nextalphaindex = ansi_blob.substr(ansi_char_index).search(/[a-z@]/i);
+								var nextalphaindex = ansi_blob.substr(ansi_char_index).search(/[a-z@=()]/i);
 								var code = ansi_blob.substr(ansi_char_index, nextalphaindex+1);
 								
 								if(ansi_blob.charAt(ansi_char_index+1)==="["){
@@ -458,9 +471,14 @@
 
 									//other
 									default:
-										var toinsert = '<span style="color:black; background:red;">UNKNOWN ESCAPE CODE {'+code+'}</span>';
-										this.insertChar(toinsert);
+									case "h":
+									case "l":
+									case "=":
+									case "(":
+									case ")":
+										console.log('UNKNOWN: '+code);
 									break;
+
 
 									//shift line right?
 									case "@":
@@ -480,24 +498,34 @@
 									// If no row/column parameters are provided (ie. <ESC>[H),
 									// the cursor will move to the home position, at the upper left of the screen.
 									case "H":
+										console.log('cursor home',arguments);
 										var row = arguments[0];
 										var column = arguments[1];
 										this.cursor_position=0;
 									break;
 
-									case "h":
-									console.log('UNKNOWN'+code);
+									case "r":
+										console.log('UNKNOWN r: '+code,arguments);
+										var rows = arguments[1];
+										for(var i=0; i<rows; i++){
+											console.log('case r:',this.raw.lines[i]);
+											if(this.raw.lines[i]===undefined) this.raw.lines[i]=[{char:'r'}];
+										}
+										console.log('case r finished:',this.raw.lines);
 									break;
 									
-									case "l":
-									console.log('UNKNOWN'+code);
-									break;
 
 
 									// <ESC>[{COUNT}A
 									// Cursor Up
 									// Moves the cursor up by COUNT rows; the default count is 1.
 									case "A":
+										console.log("escape code A");
+
+									break;
+
+									case "B":
+										console.log("escape code B");
 
 									break;
 
@@ -508,6 +536,13 @@
 										this.raw.cursor.column++;
 										//this.adjustCursor();
 									break;
+
+									case "D":
+										console.log("escape code D");
+									break;
+
+
+
 
 									// Delete
 									// Set Key Definition
@@ -537,9 +572,10 @@
 
 									//color codes
 									case "m":
+										console.log('color code:'+code,arguments,parseInt(arguments[0]),parseInt(arguments[1]));
 										for(var j=0;j<arguments.length;j++){
-											if(parseInt(arguments[j])===0) this.raw.inkwith = '';
-											else this.raw.inkwith+='char-style-'+parseInt(arguments[j])+' ';
+											if(parseInt(arguments[j])>=1) this.raw.inkwith+='char-style-'+parseInt(arguments[j])+' ';
+											else this.raw.inkwith = '';
 										}
 									break;
 
