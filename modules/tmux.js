@@ -15,7 +15,7 @@ module.exports = {
 
 			//try to create this session id
 			//exec('tmux kill-session -t "'+tmux_session_id+'"; tmux new-session -s "'+tmux_session_id+'" -d', {cwd:'/'}, function(error, stdout, stderr){
-			exec('tmux new-session -s "'+tmux_session_id+'" -d', {cwd:'/'}, function(error, stdout, stderr){
+			exec('tmux new-session -s "'+tmux_session_id+'" -x 120 -y 51 -d', {cwd:'/'}, function(error, stdout, stderr){
 
 				// new tmux session created
 
@@ -66,7 +66,8 @@ module.exports = {
 			//tmux session exists and is piping into pipes[]
 			
 			// send log
-			cbs.onData('fromlog:::\r\n'+fs.readFileSync('/tmp/.tmux-session-'+tmux_session_id+'.log').toString());
+			//cbs.onData('fromlog:::\r\n'+fs.readFileSync('/tmp/.tmux-session-'+tmux_session_id+'.log').toString());
+			cbs.onData(fs.readFileSync('/tmp/.tmux-session-'+tmux_session_id+'.log').toString());
 
 			// send sessions
 			module.exports.execTmuxLs(cbs.onList);

@@ -1,14 +1,12 @@
-var port = 3000;
-
 var app = require('express')();
-//var https_configuration
-var https = require('./modules/self-signed-server').Configure(app, '192.158.0.5', 1000*60*10);
-//var https = https_configuration.Server(https_configuration.options, app);
+var ess = require('./modules/express-self-signed');
+var https = ess.do({
+	domain:'192.168.0.8',
+	port_tls:'3000'
+}, app);
 
 app.get('/', function(req, res){
-	console.log('app.get /');
-	//https.checkExpired();
-	res.sendFile(__dirname+'/index.html');
+	res.sendFile(__dirname + '/index.html');
 });
 
 var io = require('socket.io')(https);
@@ -33,10 +31,7 @@ io.on('connection', function(socket){
 
 				//socket listener
 				socket.on('keypress', function(msg){
-
-					//https.checkExpired();
 					tmux.send(tmux_session_id,msg);
-
 				});
 				
 				//socket listener
